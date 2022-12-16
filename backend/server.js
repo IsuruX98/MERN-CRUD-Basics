@@ -8,6 +8,12 @@ require("dotenv").config();
 
 const app = express();
 
+//importing the routes
+const studentRoute = require("./routes/students.js");
+
+//using the routes
+app.use("/student", studentRoute);
+
 //declare a port number to run the server
 const PORT = process.env.PORT || 3001;
 
