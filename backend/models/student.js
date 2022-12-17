@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 
 //creating a new schema
-const studentSchema = new schema({
+let studentSchema = new schema({
   //no need to create a id because mongodb will automatically create a id for a record
   name: {
     type: String,

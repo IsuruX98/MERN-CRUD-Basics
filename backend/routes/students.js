@@ -1,5 +1,7 @@
 //creating the router
 const router = require("express").Router();
+const bodyParser = require("body-parser");
+router.use(bodyParser.json());
 
 const { response } = require("express");
 //importing the model
@@ -9,7 +11,8 @@ let student = require("../models/student");
 
 //Create-insert -> http://localhost:3001/student/add
 router.route("/add").post((req, res) => {
-  //catching the input data from the frontrnd
+  //catching the input data from the frontend
+
   const name = req.body.name;
   const age = Number(req.body.age);
   const gender = req.body.gender;
@@ -32,7 +35,7 @@ router.route("/add").post((req, res) => {
     });
 });
 
-//Retriew-read -> http://localhost:3001/student/
+//Retriew-read -> http://localhost:3001/student/ working
 router.route("/").get((req, res) => {
   //getting the data from the database
   student
@@ -61,10 +64,10 @@ router.route("/update/:id").put(async (req, res) => {
   };
 
   //update the data of the user
-  const update = await student
+  await student
     .findByIdAndUpdate(userId, updateStudent)
-    .then(() => {
-      res.status(200).send({ status: "user updated", user: update });
+    .then((student) => {
+      res.status(200).send({ status: "user updated" /*, student: student*/ });
     })
     .catch((err) => {
       console.log(err);
@@ -102,8 +105,8 @@ router.route("/get/:id").get(async (req, res) => {
   //getting data
   const user = await student
     .findById(userId)
-    .then(() => {
-      res.status(200).send({ status: "user fetched", user: user });
+    .then((student) => {
+      res.status(200).send({ status: "user fetched", student });
     })
     .catch((err) => {
       console.log(err);
