@@ -12,7 +12,7 @@ const app = express();
 const studentRoute = require("./routes/students.js");
 
 //using the routes
-app.use("/student", studentRoute);
+app.use("/student", studentRoute); //-> http://localhost:3001/student
 
 //declare a port number to run the server
 const PORT = process.env.PORT || 3001;
